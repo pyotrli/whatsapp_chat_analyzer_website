@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block head %}
+
+  <!--variable that holds all stats-->
+  <script type="text/javascript">var stats = {{ stats|safe }}</script>
+
+  <!-- draw calendar chart script -->
+  <script src='{{url_for('static', filename='calendar_chart.js')}}'></script>
+  <!-- draw pie chart script -->
+  <script src='{{url_for('static', filename='pie_chart.js')}}'></script>
+  <!-- draw TopEmojisBarChart script -->
+  <script src='{{url_for('static', filename='topemojisbarchart.js')}}'></script>
+  <!-- draw TopWordsBarChart script -->
+  <script src='{{url_for('static', filename='topwordsbarchart.js')}}'></script>
+  <!-- draw MsgsPerHourChart script -->
+  <script src='{{url_for('static', filename='msgsperhourchart.js')}}'></script>
+  <!-- draw AvgEmojisChart script -->
+  <script src='{{url_for('static', filename='avgemojischart.js')}}'></script>
+  <!-- draw AvgWordsChart script -->
+  <script src='{{url_for('static', filename='avgwordschart.js')}}'></script>
+
+
+  <!--Load the AJAX API-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    // Load the Visualization API and the corechart + other packages.
+    google.charts.load('current', {'packages':['corechart', 'calendar']});
+    // Set callbacks to run when the Google Visualization API is loaded
+    google.charts.setOnLoadCallback(drawPieChart);
+    google.charts.setOnLoadCallback(drawCalendarChart);
+    google.charts.setOnLoadCallback(drawTopEmojisBarChart);
+    google.charts.setOnLoadCallback(drawTopWordsBarChart);
+    google.charts.setOnLoadCallback(drawMsgsPerHourChart);
+    google.charts.setOnLoadCallback(drawAvgEmojisChart);
+    google.charts.setOnLoadCallback(drawAvgWordsChart);
+
+  </script>
+{% endblock %}
+
+{% block title %}
+    Chat Analysis Results
+{% endblock %}
+
+{% block main %}
+  <h1>Chat Analysis Results</h1>
+  <!--Div that will hold the pie chart-->
+  <div id="pie_chart_div" class='chart pie'></div>
+  <!-- Div for top emojis bar chart -->
+  <div id="TopEmojisBarChart" class='chart'></div>
+  <!-- Div for top words bar chart -->
+  <div id="TopWordsBarChart" class='chart'></div>
+  <!-- Div for msgs per hour chart -->
+  <div id="MsgsPerHourChart" class='chart'></div>
+  <!-- Div for avg emojis bar chart -->
+  <div id="AvgEmojisChart" class='chart'></div>
+  <!-- Div for avg words bar chart -->
+  <div id="AvgWordsChart" class='chart'></div>
+  <!--Div that will hold the calendar chart-->
+  <div id="calendar_basic" class='calendar'></div>
+
+{% endblock %}

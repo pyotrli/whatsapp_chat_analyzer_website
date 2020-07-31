@@ -1,0 +1,42 @@
+h1{
+  margin-top: 40px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.chart{
+  margin-left: 5%;
+  margin-right: 5%;
+  height: 300px;
+}
+
+.pie{
+  margin-left: 20%;
+  height: 100%;
+}
+
+.calendar{
+  margin-left: 20%;
+}
+
+.list{
+  list-style-type: none;
+}
+
+.center
+{
+  text-align: center;
+}
+
+.hidden{
+  display: none;
+}
+
+.no_bullets{
+  list-style-type:none;
+}
+
+.pad{
+  padding-top: 5%;
+  padding-left: 5%;
+}

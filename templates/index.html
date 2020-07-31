@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<script src='{{url_for('static', filename='file_upload.js')}}'></script>
+{% endblock %}
+
+{% block title %}
+    WhatsApp Chat Analyzer
+{% endblock %}
+
+{% block main %}
+  <h1>WhatsApp Chat Analyzer</h1>
+  <div class="center">
+    <p><a href="{{url_for('demo_results')}}">Demo Report</a></p>
+    <p><a href="{{url_for('android_instructions')}}">Android Instructions</a></p>
+    <p><a href="{{url_for('limitations')}}">Current limitations</a></p>
+    <p><a href=https://forms.gle/4H17MENLSvcWXc968>Contact</a></p>
+  </div>
+  <form method="post" enctype="multipart/form-data">
+    <div class="center">
+      <!-- TODO: process zip files -->
+      <label for="chat_file" class="btn btn-primary">Choose Android chat to analyze (txt)</label>
+      <input type="file" id="chat_file" name="chat_file" accept="text/plain, application/zip" class="hidden">
+    </div>
+    <div class="preview center">
+      <p>No files currently selected for upload</p>
+    </div>
+    <div class="center">
+      <button class="btn btn-primary" type="submit" id="analyze_btn" name="analyze_btn" disabled="True">Analyze</button>
+    </div>
+  </form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    WhatsApp Chat Analyzer
+{% endblock %}
+
+{% block main %}
+<div class="pad">
+<h2>Current Limitations</h2>
+<ul class="no_bullets">
+  <li>Android Only</li>
+  <li>Your phone's date must be set to DDMMYYYY format</li>
+  <li>Your phone's time must be set to 24hr format</li>
+  <li>Max 6 people per chat will be shown</li>
+  <li>Common words filtered out for English only</li>
+</ul>
+
+<h5><a href="{{url_for('index')}}"> BACK </a></h5>
+</div>
+{% endblock %}

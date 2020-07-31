@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    WhatsApp Chat Analyzer
+{% endblock %}
+
+{% block main %}
+<div class="pad">
+<h2>Android Chat Export Instructions</h2>
+<ul class="no_bullets">
+  <li>Open the chat you wish to analyze</li>
+  <li>Tap on three dots at top right corner</li>
+  <li>Select 'More'</li>
+  <li>Select 'Export chat'</li>
+  <li>Select '<b>WITHOUT</b> MEDIA'</li>
+  <li>Save chat on your device for uploading <a href="{{url_for('index')}}"> here </a></li>
+</ul>
+</div>
+{% endblock %}

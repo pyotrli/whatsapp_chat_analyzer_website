@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    WhatsApp Chat Analyzer
+{% endblock %}
+
+{% block main %}
+<div class="pad">
+<h2>Sorry, your chat was not analyzed correctly</h2>
+<ul class="no_bullets">
+  <li>Please check the <a href="{{url_for('android_instructions')}}"> instructions </a></li>
+  <li>Please check <a href="{{url_for('limitations')}}"> current limitations </a></li>
+</ul>
+</div>
+{% endblock %}
