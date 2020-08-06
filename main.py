@@ -4,11 +4,6 @@ import parse_android
 import json
 import os
 
-# Flask stratup:
-# . venv/bin/activate
-# export FLASK_ENV=development
-# flask run
-
 # Configure application
 app = Flask(__name__)
 
@@ -43,7 +38,6 @@ def demo_results():
     filename = os.path.join('demo_chat_json.txt')
     with open(filename) as f:
         stats = f.read()
-    #print(stats)
     stats = json.loads(stats)
     return render_template("results.html", stats=stats)
 

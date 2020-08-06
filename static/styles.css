@@ -32,11 +32,11 @@ h1{
   display: none;
 }
 
-.no_bullets{
-  list-style-type:none;
-}
-
 .pad{
   padding-top: 5%;
   padding-left: 5%;
+}
+
+.mobile_text_adjust{
+  text-size-adjust: auto;
 }

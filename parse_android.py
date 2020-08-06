@@ -140,35 +140,34 @@ def parse_android(file):
         if not line:
             continue
         else:
-    #        try:
-            msg = parse_msg(line)
-            if msg == 'media_msg':
+            try:
+                msg = parse_msg(line)
+                if msg == 'media_msg':
+                    continue
+                elif msg == 'sys_notif':
+                    continue
+                # if a new line of old message, parse_msg returns txt
+                elif msg == 'old_msg':
+                    for person in results:
+                        if person.name == name:
+                            person.update_all_words_all_emojis(line)
+                            break
+                elif msg:
+                    name = msg.group('sender')
+                    for person in results:
+                        if person.name == name:
+                            person.update_count_stats(msg)
+                            person.update_all_words_all_emojis(msg)
+                            found = True
+                            break
+                    if not found:
+                        new_person = Person_stats(name)
+                        new_person.update_count_stats(msg)
+                        new_person.update_all_words_all_emojis(msg)
+                        results.append(new_person)
+                pass
+            except:
                 continue
-            elif msg == 'sys_notif':
-                continue
-            # if a new line of old message, parse_msg returns txt
-            elif msg == 'old_msg':
-                for person in results:
-                    if person.name == name:
-                        person.update_all_words_all_emojis(line)
-                        break
-            elif msg:
-                name = msg.group('sender')
-                for person in results:
-                    if person.name == name:
-                        person.update_count_stats(msg)
-                        person.update_all_words_all_emojis(msg)
-                        found = True
-                        break
-                if not found:
-                    new_person = Person_stats(name)
-                    new_person.update_count_stats(msg)
-                    new_person.update_all_words_all_emojis(msg)
-                    results.append(new_person)
-    #            pass
-    #        except:
-    #            print("try FAILED")
-    #            continue
 
     # order persons by total_msgs desc
     results.sort(key=lambda x: x.total_msgs, reverse=True)
@@ -178,7 +177,6 @@ def parse_android(file):
     json_results = []
     for person in results:
         person.update_top_10_counts()
-        print(person.name)
         person.update_total_words_total_emojis()
         # delete all words and all emojis for security
         # use this later for sentiment analysis

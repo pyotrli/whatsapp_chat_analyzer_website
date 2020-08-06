@@ -5,15 +5,17 @@
 {% endblock %}
 
 {% block main %}
-<div class="pad">
+<div class="pad mobile_text_adjust">
 <h2>Android Chat Export Instructions</h2>
-<ul class="no_bullets">
+<ul>
   <li>Open the chat you wish to analyze</li>
   <li>Tap on three dots at top right corner</li>
   <li>Select 'More'</li>
   <li>Select 'Export chat'</li>
   <li>Select '<b>WITHOUT</b> MEDIA'</li>
-  <li>Save chat on your device for uploading <a href="{{url_for('index')}}"> here </a></li>
+  <li>If on mobile and using Chrome, then make sure to save the file locally on your device (no clouds eg Google Drive / Dropbox)</li>
+  <li>Microsoft Edge on mobile allows for uploads from cloud services (Google Drive / Dropbox)</li>
+  <li>Upload file on <a href="{{url_for('index')}}"> this page </a></li>
 </ul>
 </div>
 {% endblock %}

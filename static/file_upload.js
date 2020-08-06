@@ -52,7 +52,8 @@ function validFileType(file)
   return fileTypes.includes(file.type);
 }
 
-const fileTypes = ["text/plain", "application/zip"];
+// TODO: add zip file processing for iOS: "application/zip"
+const fileTypes = ["text/plain"];
 
 function returnFileSize(number)
 {

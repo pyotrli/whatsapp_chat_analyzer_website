@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block main %}
+
   <h1>WhatsApp Chat Analyzer</h1>
   <div class="center">
     <p><a href="{{url_for('demo_results')}}">Demo Report</a></p>
@@ -16,6 +17,7 @@
     <p><a href="{{url_for('limitations')}}">Current limitations</a></p>
     <p><a href=https://forms.gle/4H17MENLSvcWXc968>Contact</a></p>
   </div>
+  <div>
   <form method="post" enctype="multipart/form-data">
     <div class="center">
       <!-- TODO: process zip files -->
@@ -29,4 +31,5 @@
       <button class="btn btn-primary" type="submit" id="analyze_btn" name="analyze_btn" disabled="True">Analyze</button>
     </div>
   </form>
+  </div>
 {% endblock %}
