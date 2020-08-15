@@ -1,5 +1,5 @@
 function drawTopEmojisBarChart() {
-      data_rows = topEmojisDataRows();
+      var data_rows = topEmojisDataRows();
       var data = google.visualization.arrayToDataTable(data_rows);
 
       var options = {

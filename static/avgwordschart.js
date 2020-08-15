@@ -35,7 +35,7 @@ function AvgWordsDataRows()
   }
 
   // Construct title data line for the chart
-  // ['Avg emojis per msg', 'Name1', 'Name2']
+  // ['Avg words per msg', 'Name1', 'Name2']
   var chart_data_title = ['Average Words per message'];
   for (var j = 0; j < data_per_person.length; j++)
   {
@@ -43,7 +43,7 @@ function AvgWordsDataRows()
   }
 
   // Construct data rows for the chart
-  // ['Avg emojis per msg - literal text', 'Avg words per msg - number']
+  // ['Avg words per msg - literal text', 'Avg words per msg - number']
   var data_rows = [];
   var data_row = ['Average Words per message'];
   for (var k = 0; k < data_per_person.length; k++)

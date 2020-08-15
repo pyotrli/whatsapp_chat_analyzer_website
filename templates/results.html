@@ -19,6 +19,8 @@
   <script src='{{url_for('static', filename='avgemojischart.js')}}'></script>
   <!-- draw AvgWordsChart script -->
   <script src='{{url_for('static', filename='avgwordschart.js')}}'></script>
+  <!-- draw sentiment_candlechart.js script -->
+  <script src='{{url_for('static', filename='sentiment_candlechart.js')}}'></script>
 
 
   <!--Load the AJAX API-->
@@ -28,12 +30,13 @@
     google.charts.load('current', {'packages':['corechart', 'calendar']});
     // Set callbacks to run when the Google Visualization API is loaded
     google.charts.setOnLoadCallback(drawPieChart);
-    google.charts.setOnLoadCallback(drawCalendarChart);
+    google.charts.setOnLoadCallback(drawSentimentChart);
     google.charts.setOnLoadCallback(drawTopEmojisBarChart);
     google.charts.setOnLoadCallback(drawTopWordsBarChart);
     google.charts.setOnLoadCallback(drawMsgsPerHourChart);
     google.charts.setOnLoadCallback(drawAvgEmojisChart);
     google.charts.setOnLoadCallback(drawAvgWordsChart);
+    google.charts.setOnLoadCallback(drawCalendarChart);
 
   </script>
 {% endblock %}
@@ -44,9 +47,11 @@
 
 {% block main %}
   <h1>Chat Analysis Results</h1>
-  <div>
+  <div class="center">
     <!--Div that will hold the pie chart-->
     <div id="pie_chart_div"></div>
+    <!-- Div for centiment candle chart -->
+    <div id="SentimentCandleChart"></div>
     <!-- Div for top emojis bar chart -->
     <div id="TopEmojisBarChart"></div>
     <!-- Div for top words bar chart -->

@@ -11,8 +11,7 @@ function drawPieChart() {
 
   // Set chart options
   var options = {'title':'Total Messages Sent',
-                 'width':800,
-                 'height':400,
+                 'height': 400,
                  'pieSliceText': 'value',
                  'legend': {position: 'right', alignment: 'center'},
                  is3D: true,

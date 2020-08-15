@@ -6,6 +6,8 @@ import json
 from string import punctuation
 from collections import Counter
 
+import analyze_text
+
 # set english stop words
 stop_words = open("stop_words_EN.txt", "r").read().split()
 
@@ -48,7 +50,8 @@ class Person_stats:
         self.all_emojis = [] # list of all emojis used
         self.total_words = 0 # total words used
         self.total_emojis = 0 # total emojis used
-        self.emotion = ""
+        self.full_text = "" # all msgs
+        self.sentiment = {} # {"score": sentiment.score, "magnitude": sentiment.magnitude}
 
     # update total_msgs, msg_per_date, msg_per_weekday, msg_per_hour
     def update_count_stats(self, msg):
@@ -78,6 +81,15 @@ class Person_stats:
         if len(words) > 0:
             self.all_words = self.all_words + " " + words
 
+    # update full_text for sentiment analysis
+    def update_full_text(self, msg):
+        if type(msg) == type(" "):
+            if len(msg) > 0:
+                self.full_text = self.full_text + " " + msg
+        else:
+            new_msg = msg.group('message')
+            self.full_text = self.full_text + " " + new_msg
+
     def update_top_10_counts(self):
         # update top_10_words
         text = self.all_words.lower().split()
@@ -102,10 +114,17 @@ class Person_stats:
         self.total_emojis = len(self.all_emojis)
 
     # Delete all_words and all_emojis for privacy
-    def delete_all_words_all_emojis(self):
+    def delete_all_words_all_emojis_full_text(self):
         self.all_words = ""
         self.all_emojis = ""
+        self.full_text = {}
 
+    # update sentiment
+    def update_sentiment(self):
+        try:
+            self.sentiment = analyze_text.analyze_sentiment(self.full_text)
+        except:
+            print('sentiment analysis failed')
 
 
 
@@ -126,7 +145,7 @@ def parse_msg(message):
         return "sys_notif"
     # if msg doesn't start with date time pattern, must be continuation of previous msg
     else:
-        return 'old_msg'
+        return "old_msg"
 
 # main function to parse the file and return all stats
 def parse_android(file):
@@ -146,11 +165,12 @@ def parse_android(file):
                     continue
                 elif msg == 'sys_notif':
                     continue
-                # if a new line of old message, parse_msg returns txt
+                # if a new line of old message, parse_msg returns "old_msg" txt
                 elif msg == 'old_msg':
                     for person in results:
                         if person.name == name:
                             person.update_all_words_all_emojis(line)
+                            person.update_full_text(line)
                             break
                 elif msg:
                     name = msg.group('sender')
@@ -158,12 +178,14 @@ def parse_android(file):
                         if person.name == name:
                             person.update_count_stats(msg)
                             person.update_all_words_all_emojis(msg)
+                            person.update_full_text(msg)
                             found = True
                             break
                     if not found:
                         new_person = Person_stats(name)
                         new_person.update_count_stats(msg)
                         new_person.update_all_words_all_emojis(msg)
+                        new_person.update_full_text(msg)
                         results.append(new_person)
                 pass
             except:
@@ -174,17 +196,22 @@ def parse_android(file):
 
 
     # update top 10 counts and convert output to JSON for javascript
+
     json_results = []
     for person in results:
         person.update_top_10_counts()
         person.update_total_words_total_emojis()
+        person.update_sentiment()
         # delete all words and all emojis for security
-        # use this later for sentiment analysis
-        person.delete_all_words_all_emojis()
+        person.delete_all_words_all_emojis_full_text()
         json_results.append(json.dumps(person.__dict__))
 
     if len(json_results) == 0:
         return None
     else:
+        # generate demo json.txt
+        #with open('demo_chat_json.txt', 'w') as outfile:
+            #json.dump(json_results, outfile)
         json_results = json.dumps(json_results)
-        return json_results
+
+    return json_results
