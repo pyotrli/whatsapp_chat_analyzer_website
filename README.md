@@ -20,3 +20,7 @@ Website for analyzing a WhatsApp Chat
 - phone's time must be set to 24hr format
 - Max 6 people per chat will be shown
 - Common words filtered out for English only
+
+# Demo Charts
+![Image of demo_charts]
+(https://github.com/pyotrli/whatsapp_chat_analyzer_website/blob/master/chat_analyzer_demo_charts.png)
