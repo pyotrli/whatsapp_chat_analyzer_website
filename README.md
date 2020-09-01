@@ -22,5 +22,4 @@ Website for analyzing a WhatsApp Chat
 - Common words filtered out for English only
 
 # Demo Charts
-![Image of demo_charts]
-(https://github.com/pyotrli/whatsapp_chat_analyzer_website/blob/master/chat_analyzer_demo_charts.png)
+![Image of demo_charts](https://github.com/pyotrli/whatsapp_chat_analyzer_website/blob/master/chat_analyzer_demo_charts.png)
