@@ -25,7 +25,7 @@ pycparser==2.20
 pytz==2020.1
 regex==2020.6.8
 requests==2.24.0
-rsa==4.6
+rsa==4.7
 six==1.15.0
 urllib3==1.25.10
 Werkzeug==1.0.1
