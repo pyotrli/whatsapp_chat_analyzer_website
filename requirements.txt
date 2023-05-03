@@ -4,7 +4,7 @@ cffi==1.14.1
 chardet==3.0.4
 click==7.1.2
 emoji==0.5.4
-Flask==1.1.2
+Flask==2.3.2
 google-api-core==1.22.0
 google-auth==1.20.1
 google-cloud-core==1.4.1
